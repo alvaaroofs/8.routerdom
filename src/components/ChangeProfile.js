@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useContext } from "react";
+import { AppContext } from "../App";
 
-export const ChangeProfile = (props) => {
+export const ChangeProfile = () => {
+    const { setUsername } = useContext(AppContext);
+
     const [newUsername, setNewUsername] = useState("");
     return(
         <div>
@@ -8,7 +12,7 @@ export const ChangeProfile = (props) => {
                 setNewUsername(event.target.value);
             }}/>
             <button onClick={() => {
-                    props.setNewUsername(newUsername);
+                    setUsername(newUsername);
                 }}> 
                 Change the username 
             </button>
@@ -16,4 +20,6 @@ export const ChangeProfile = (props) => {
     );
 };
 
-//Vamos a crear un boton que, cuando lo clicemos, cambiaremos el valor de username (cambiaremos el nombre).
+//Lo mismo, le pasamos los imports de useContext y appContext
+//Le pasamos la constante de username como en los otros componentes. Procedemos a quitar los props
+//No quiere decir que los props sean malos, si no que solo hay que usarlos cuando sean necesarios.
