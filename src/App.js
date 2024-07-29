@@ -1,30 +1,31 @@
 import './App.css';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { Home } from "./pages/Home";
-import { Menu } from "./pages/Menu";
+import { Profile } from "./pages/Profile";
 import { Contact } from "./pages/Contact";
 import { Navbar } from "./Navbar";
+import { useState } from "react";
 
 //==========================================
-//8. Este apartado, es muy necesario en webs donde haya muchisimas paginas dentro de ella; 
-//Instalaremos en una nueva terminal, una libreria para ello: npm install react-router-dom
 /*
-Router:
-Routes:
-Route: lo usaremos para definir cada una de las rutas que vamos a tener en la web
+En este apartado 9, haremos uso del useContext; hemos sustituido la opcion de menu, por profile, y hemos creado la
+carpeta components, con un js de ChangeProfile en el que dentro de el explicaremos su funcionamiento.
 */
 function App() {
+  const [username, setUsername] = useState("Alvaro F");
+  return(
   <div className="App">
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
+          <Route path="/" element={<Home username={username}/>} />
+          <Route path="/menu" element={<Profile username={username} />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<h1> PAGE NOT FOUND</h1>} />
         </Routes>
       </Router>
     </div>
+  );
 }
 
 export default App;
